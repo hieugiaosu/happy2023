@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+}
+</style>
+</head>
+<style>
+body {
+  background-image: url('stickman-fight-wrecked.gif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+<body>
+<style>
+.center {
+  width: 80%;
+}
+</style>
+<p id="CountDown" style="color:Tomato;" ></p>
+<p>
+<center id="mess" style="color:Tomato;" >
+  
+</center>
+</p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 1, 2023 00:00:00").getTime();
+function changeToHexa(b){
+  if (b==0) return "0x00";
+  var a=b;
+  var dict = {
+    0:"0", 1:"1", 2:"2", 3:"3", 4:"4", 5:"5", 6:"6", 7:"7",8:"8",9:"9",10:"A",11:"B",12:"C",13:"D",14:"E",15:"F"
+  };
+    var hexString ="";
+    while (a != 0){
+      hexString = dict[a%16].concat(hexString);
+        a = Math.floor(a/16); 
+    }
+    if (hexString.length < 2) hexString = "0".concat(hexString);
+    hexString = "0x".concat(hexString);
+    return hexString;
+}
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("CountDown").innerHTML = "Happy New Year";
+    document.getElementById("mess").innerHTML = "Cùng Pass hết tất cả môn nào :)))))";
+    document.body.style.background = "#f3f3f3 url('146147afab36f16668678d39abfbad1c991e5d0c.png') no-repeat fixed" ;
+  } else {  
+    // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  // Output the result in an element with id="CountDown"
+  document.getElementById("CountDown").innerHTML = changeToHexa(days) + "d " + changeToHexa(hours) + "h "
+  + changeToHexa(minutes) + "m " + changeToHexa(seconds) + "s ";
+   document.getElementById("mess").innerHTML = "Các bạn đã có một năm 0x07E6 với nhiều thứ trải qua. Nhưng bạn đã đập tan hết mọi khó khăn thử thách, vì vậy hãy hướng tới năm 0x07E7 cùng toi nhé"
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
